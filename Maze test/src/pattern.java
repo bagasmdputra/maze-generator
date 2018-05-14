@@ -7,12 +7,15 @@ public class pattern {
 		System.out.println("Enter a number: ");
 		int n = reader.nextInt(); // Scans the next token of the input as an int.
 		
+		
+		//print maze patterns
+		System.out.println("\n Maze Pattern 1\n");
 		printMaze1(n);
-		System.out.println();
+		System.out.println("\n Maze Pattern 2\n");
 		printMaze2(n);
-		System.out.println();
+		System.out.println("\n Maze Pattern 3\n");
 		printMaze3(n);
-		System.out.println();
+		System.out.println("\n Maze Pattern 4\n");
 		printMaze4(n);
 		
 		//once finished
@@ -22,11 +25,17 @@ public class pattern {
 	
 	public static void	printMaze1(int size) {
 		for(int i = 0; i < size; i++) {
-			if(i%2 == 0){
 				for(int j = 0; j < size; j++) {
 					if(
-							(i%4==0 && j==1) ||
-							(i%4==2 && j==size-2)
+							//right indent horizontal
+							(i%4==0 && j==1) || 
+										
+							//left indent horizontal
+							(i%4==2 && j==size-2) ||
+							
+							//vertical
+							(i%2 == 1 && j>0 && j<size-1)
+							
 							) {
 						System.out.print(' ');
 					}
@@ -34,14 +43,6 @@ public class pattern {
 						System.out.print('@');
 					}
 				}
-			}
-			else{
-				System.out.print('@');
-				for(int j = 1; j < size-1; j++) {
-					System.out.print(' ');
-				}
-				System.out.print('@');
-			}
 			System.out.println();
 		}
 			
@@ -104,16 +105,10 @@ public class pattern {
 						//vertical even
 						(j%4==2 && (i<size-j || (j==size-1))) ||
 						
-						//vertical odd
-						(i%4==0 && (i==0 || (j!=0 && j+1>size-i)) && (i==0 || j<size-2)) ||
-						//vertical even
-						(i%4==2 && (j+1>size-i || (i==size-1))) 
-						
-						//bottom
-//						(i%2==0 && j>=size-i && j<i-1) 
-//						//horizontal
-//						(i%2==0 && j>=i+2 && j<size-i)
-						
+						//horizontal odd
+						(i%4==0 && ((i==0 && j>1) || (j!=0 && j+1>size-i)) && (i==0 || j<size-2)) ||
+						//horizontal even
+						(i%4==2 && (j+1>size-i || (i==size-1))) 			
 						) {
 					System.out.print('@');
 				}else {
